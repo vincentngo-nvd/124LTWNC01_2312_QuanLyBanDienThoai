@@ -1,0 +1,210 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký tài khoản - Phone Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('/Images/pngtree-smartphone-shop-sale-logo-design-png-image_5069958.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #FFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 40px 70px 40px 70px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+        }
+
+            .login-box h2 {
+                font-size: 24px;
+                color: #000;
+                
+                margin-bottom: 30px;
+            }
+
+        .textbox {
+            position: relative;
+            width: 80%; /* Đặt chiều rộng của textbox là 80% */
+            margin: 0 auto;
+            margin-bottom: 20px; /* Căn giữa textbox */
+        }
+
+            .textbox input {
+                width: 100%; /* Đảm bảo trường input có chiều rộng đầy đủ trong container */
+                padding: 10px 30px 10px 10px; /* Thêm padding bên phải để có không gian cho biểu tượng mắt */
+                border: 1px solid #000;
+                border-radius: 20px;
+                font-size: 16px;
+                outline: none;
+            }
+
+        .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* Đảm bảo eye-icon nằm bên phải của trường nhập liệu */
+            transform: translateY(-50%); /* Căn giữa biểu tượng mắt theo chiều dọc */
+            cursor: pointer;
+        }
+        
+
+        .register-btn {
+            width: 40%;
+            padding: 15px;
+            background-color: #4A628A;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            margin-top: 30px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+            .register-btn:hover {
+                background-color: #3578b5;
+            }
+
+        .register {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+            .register a {
+                color: #FF5858;
+                text-decoration: none;
+            }
+
+                .register a:hover {
+                    text-decoration: underline;
+                }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+            <form action="#" method="POST">
+                <!-- Họ Tên -->
+                <div class="textbox">
+                    <input type="text" placeholder="Họ và Tên" name="full_name" required>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="textbox">
+                    <input type="tel" placeholder="Số điện thoại" name="phone" required>
+                </div>
+
+                <!-- Địa chỉ -->
+                <div class="textbox">
+                    <input type="text" placeholder="Địa chỉ" name="address" required>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="textbox">
+                    <input type="password" placeholder="Mật khẩu" name="password" id="password" required>
+                    <span class="eye-icon" id="eye-icon" onclick="togglePassword()">
+                        <img src="~/Images/eye_close.png" alt="eye icon">
+                    </span>
+                </div>
+
+                <!-- Xác nhận mật khẩu -->
+                <div class="textbox">
+                    <input type="password" placeholder="Xác nhận mật khẩu" name="confirm_password" id="confirm_password" required>
+                    <span class="eye-icon" id="eye-icon-confirm" onclick="toggleConfirmPassword()">
+                        <img src="~/Images/eye_close.png" alt="eye icon">
+                    </span>
+                </div>
+
+
+                <button type="submit" class="register-btn">Đăng Ký</button>
+                <div class="register">
+                    <p>Bạn đã có tài khoản? <a href="/Home/Login">Đăng nhập</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Lắng nghe sự kiện click trên tất cả các thẻ <a> trong sidebar
+            document.querySelectorAll('.sidebar .menu a').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    // Ngừng hành động mặc định của thẻ a
+                    event.preventDefault();
+
+                    // Điều hướng đến URL được chỉ định trong href của thẻ a
+                    const targetUrl = link.getAttribute('href');
+                    window.location.href = targetUrl;
+                });
+            });
+
+            document.querySelector('.register-btn').addEventListener('click', function () {
+                // Chuyển hướng đến trang Login.cshtml
+                window.location.href = '/Home/Register'; // Điều hướng đến Login.cshtml
+            });
+        });
+
+        // Hàm để toggle mật khẩu
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var eyeIcon = document.getElementById("eye-icon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.innerHTML = '<img src="/Images/icons8-eye-16 (1).png" alt="eye icon">'; // Thay đổi biểu tượng khi mật khẩu hiển thị
+            } else {
+                passwordField.type = "password";
+                eyeIcon.innerHTML = '<img src="/Images/eye_close.png" alt="eye icon">'; // Thay đổi biểu tượng khi mật khẩu ẩn
+            }
+        }
+
+        // Hàm để toggle xác nhận mật khẩu
+        function toggleConfirmPassword() {
+            var confirmPasswordField = document.getElementById("confirm_password");
+            var eyeIconConfirm = document.getElementById("eye-icon-confirm");
+
+            if (confirmPasswordField.type === "password") {
+                confirmPasswordField.type = "text";
+                eyeIconConfirm.innerHTML = '<img src="/Images/icons8-eye-16 (1).png" alt="eye icon">'; // Thay đổi biểu tượng khi mật khẩu hiển thị
+            } else {
+                confirmPasswordField.type = "password";
+                eyeIconConfirm.innerHTML = '<img src="/Images/eye_close.png" alt="eye icon">'; // Thay đổi biểu tượng khi mật khẩu ẩn
+            }
+        }
+    </script>
+</body>
+</html>
+
+

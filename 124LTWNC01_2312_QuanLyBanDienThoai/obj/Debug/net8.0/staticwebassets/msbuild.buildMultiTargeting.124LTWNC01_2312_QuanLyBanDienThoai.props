@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\124LTWNC01_2312_QuanLyBanDienThoai.props" />
+</Project>

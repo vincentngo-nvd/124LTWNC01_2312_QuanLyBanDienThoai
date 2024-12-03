@@ -1,0 +1,669 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    Layout = null;
+}
+<!-- Đưa phần style vào đầu file -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Header Style */
+    .header {
+        background-color: #E0052B;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        .header div select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .header .logo {
+            height: 40px;
+            margin-right: 30px;
+        }
+
+        .header .search-container {
+            position: relative;
+            margin-left: 20px;
+        }
+
+            .header .search-container input {
+                margin-left: 5px;
+                padding-left: 30px;
+                height: 30px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .header .search-container img {
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+        }
+
+            .header a img {
+                height: 20px;
+                vertical-align: middle;
+            }
+
+        .header .buttons button {
+            margin-left: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .header .buttons img {
+            height: 20px;
+            vertical-align: middle;
+        }
+
+    .category {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        border: 1px solid #ccc;
+    }
+
+        .category button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: 1px solid #ccc;
+            margin: 0;
+            text-align: center;
+            background-color: #fff;
+        }
+
+            .category button:hover {
+                background-color: #f1f1f1;
+            }
+
+        .category img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+
+    .body {
+        max-width: 1100px; /* Chiều rộng tối đa của nội dung chính */
+        margin: 20px auto; /* Căn giữa và tạo khoảng cách trên dưới */
+        border-radius: 8px; /* Bo góc */
+    }
+
+        .body .main-images {
+            display: flex;
+            margin-top: 10px;
+        }
+
+            .body .main-images img {
+                height: 320px;
+                width: 64%;
+                margin-right: 2.6%;
+            }
+
+        .body .side-images img {
+            height: 150px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+    .banner {
+        width: 100%;
+        height: 170px;
+        margin-bottom: 10px;
+    }
+
+    .sale-section {
+        background-color: #f1f1f1;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 20px;
+    }
+
+        .sale-section h3 {
+            margin: 0;
+        }
+
+        .sale-section .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            overflow-x: scroll;
+        }
+
+    /* Title Section */
+    .title-items {
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .title-text {
+        font-size: 24px;
+        font-weight: bolder;
+    }
+
+    /* Button Container */
+    .button-container {
+        display: flex;
+        margin-left: 475px;
+    }
+
+    /* Common Button Styles */
+    .product-button {
+        margin-right: 20px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        padding: 5px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .product-button:hover {
+            background-color: #f0f0f0;
+        }
+
+    /* "Xem tất cả" Button */
+    .view-all-button {
+        border-radius: 7px;
+        border: 1px solid #ccc;
+        padding: 5px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .view-all-button:hover {
+            background-color: #f0f0f0;
+        }
+
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 13px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .product {
+        background: #FFFFFF;
+        padding: 10px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+        .product img {
+            width: 80%;
+            height: 150px;
+        }
+
+        .product p:nth-child(2) {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .product p:nth-child(3) {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product p:nth-child(4) {
+            font-size: 12px;
+        }
+
+
+    .footer {
+        background-color: #f1f1f1;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 5px;
+    }
+
+        .footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .footer .footer-content div {
+                text-align: left;
+            }
+
+            .footer .footer-content p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+    .footer-info {
+        text-align: center;
+        background-color: #f1f1f1;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+
+    /* Container for the content */
+    /* Tổng thể container */
+    .content-container {
+        display: flex;
+        max-width: 1400px;
+        margin: 30px auto;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        display: flex;
+        width: 38%;
+        max-height: 400px;
+        background-color: #FFFF;
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        margin-right: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border-right: 1px solid #e5e5e5;
+    }
+
+
+
+        .sidebar h3 {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+            .sidebar .menu li {
+                padding: 10px;
+                justify-content: center;
+                background-color: #EAEAEA;
+                justify-content: center;
+                transition: background-color 0.3s, color 0.3s; /* Thêm hiệu ứng mượt */
+            }
+
+                .sidebar .menu li:hover {
+                    background-color: #E0052B; /* Đổi màu nền */
+                    color: #FFF; /* Đổi màu chữ */
+                }
+
+                .sidebar .menu li a {
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: 500;
+                    font-size: 14px;
+                    transition: color 0.3s; /* Thêm hiệu ứng mượt */
+                }
+
+                .sidebar .menu li:hover a {
+                    color: #FFF; /* Đổi màu chữ khi hover */
+                }
+
+
+
+        .sidebar .logout-btn {
+            display: block;
+            width: 50%;
+            padding: 12px 0;
+            background-color: #E0052B;
+            color: #fff;
+            border: none;
+            justify-content: space-around;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+
+            .sidebar .logout-btn:hover {
+                background-color: #FB5D79;
+                transform: scale(1.1);
+            }
+
+    /* Order Section */
+    .account-info {
+        width: 460px;
+        background-color: #fff;
+        
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+        /* Tiêu đề chính */
+        .account-info h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: start;
+        }
+
+    /* Thông tin cá nhân */
+    .personal-info {
+        border: 1px solid #e5e5e5;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .personal-info h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .personal-info p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+    .edit-link {
+        font-size: 14px;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .edit-link:hover {
+            color: #0056b3;
+        }
+
+    /* Địa chỉ nhận hàng */
+    .address-info {
+        border: 1px solid #e5e5e5;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .address-info h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+    /* Grid layout cho form */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 cột */
+        gap: 15px; /* Khoảng cách giữa các ô */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+            .form-group input::placeholder {
+                color: #aaa;
+            }
+
+    /* Nút cập nhật */
+    .update-btn {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #E0052B;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .update-btn:hover {
+            background-color: #FB5D79;
+        }
+</style>
+
+<!-- Header -->
+<div class="header">
+    <div style="display: flex; align-items: center">
+
+        <img src="~/Images/logo_cellphones.png" alt="Logo" class="logo">
+
+        <!-- Combobox Địa Điểm -->
+        <select>
+            <option>Đà Nẵng</option>
+            <option>Gia Lai</option>
+            <option>Hà Nội</option>
+            <option>Hải Phòng</option>
+            <option>Đà Lạt</option>
+            <option>Kon Tum</option>
+            <option>Quy Nhơn</option>
+        </select>
+
+        <div class="search-container">
+            <img src="~/Images/black_search.png" alt="Search Icon">
+            <input type="text" placeholder="Bạn cần tìm gì?">
+        </div>
+
+        <a href="/Home/LienHe" style="display: flex; text-align: center; justify-content: center; align-items: center;">
+            <img src="~/Images/call_white.png" alt="Call">
+            Gọi mua hàng<br>1800.2097
+        </a>
+        <a href="#">
+            <img src="~/Images/white_location.png" alt="Location">
+            Cửa hàng gần bạn
+        </a>
+        <a href="#">
+            <img src="~/Images/white_delivery_truck_speed.png" alt="Delivery">
+            Tra cứu đơn hàng
+        </a>
+
+        <div class="buttons">
+            <button>
+                <img src="~/Images/black_cart.png" alt="Cart">
+                Giỏ hàng
+            </button>
+            <button class="btn-profile">
+                <img src="~/Images/black_person.png" alt="Person">
+                Dương Ngô
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Danh Mục -->
+<div class="category">
+    <button><img src="~/Images/logo_xiaomi.png" alt="Xiaomi"> XIAOMI</button>
+    <button><img src="~/Images/logo_apple.png" alt="iPhone"> IPHONE</button>
+    <button><img src="~/Images/google.png" alt="Samsung"> SAMSUNG</button>
+    <button><img src="~/Images/oppo.png" alt="Oppo"> OPPO</button>
+    <button>TIN HOT</button>
+    <button>ƯU ĐÃI</button>
+</div>
+
+<div class="body">
+    <!--Nội dung chính-->
+    <div class="content-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Anh/Chị Dương Ngô</h3>
+            <ul class="menu">
+                <li><a href="/Home/Profile">Đơn hàng đã mua</a></li>
+                <li><a href="/Home/ThongTinCaNhan">Thông tin và địa chỉ</a></li>
+                <li><a href="/Home/LienHe">Liên hệ</a></li>
+            </ul>
+            <button class="logout-btn">ĐĂNG XUẤT</button>
+        </div>
+
+        <!-- Order Section -->
+        <div class="order-section">
+            <div class="account-info">
+                <h2>Thông tin tài khoản</h2>
+                <!-- Thông tin cá nhân -->
+                <div class="personal-info">
+                    <h3>THÔNG TIN CÁ NHÂN</h3>
+                    <p><strong>Anh/Chị:</strong> Dương Ngô - <strong>Số điện thoại:</strong> 0799799779</p>
+                    <a href="#" class="edit-link">Sửa</a>
+                </div>
+
+                <!-- Địa chỉ nhận hàng -->
+                <div class="address-info">
+                    <h3>ĐỊA CHỈ NHẬN HÀNG</h3>
+                    <form action="#" method="POST">
+                        <div class="form-grid">
+                            <!-- Cột 1 -->
+                            <div class="form-group">
+                                <label for="city">Tỉnh / Thành phố</label>
+                                <select id="city" name="city">
+                                    <option value="">Chọn Tỉnh / Thành phố</option>
+                                    <option value="hanoi">Hà Nội</option>
+                                    <option value="danang">Đà Nẵng</option>
+                                    <option value="hochiminh">TP. Hồ Chí Minh</option>
+                                    <option value="hue">Huế</option>
+                                    <option value="haiphong">Hải Phòng</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="district">Quận / Huyện</label>
+                                <select id="district" name="district">
+                                    <option value="">Chọn Quận / Huyện</option>
+                                    <option value="hoankiem">Quận Hoàn Kiếm</option>
+                                    <option value="caugiay">Quận Cầu Giấy</option>
+                                    <option value="haichau">Quận Hải Châu</option>
+                                    <option value="binhthanh">Quận Bình Thạnh</option>
+                                    <option value="nguhanhson">Quận Ngũ Hành Sơn</option>
+                                </select>
+                            </div>
+
+                            <!-- Cột 2 -->
+                            <div class="form-group">
+                                <label for="ward">Phường / Xã</label>
+                                <select id="ward" name="ward">
+                                    <option value="">Chọn Phường / Xã</option>
+                                    <option value="phuong1">Phường 1</option>
+                                    <option value="phuong2">Phường 2</option>
+                                    <option value="phuong3">Phường 3</option>
+                                    <option value="phuong4">Phường 4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Số nhà, tên đường</label>
+                                <input type="text" id="address" name="address" placeholder="Nhập số nhà, tên đường">
+                            </div>
+                        </div>
+                        <button type="submit" class="update-btn">Cập nhật</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div>
+            <p>Giới thiệu về công ty</p>
+            <p>Chính sách bảo mật</p>
+            <p>Quy chế hoạt động</p>
+            <p>Kiểm tra hóa đơn điện tử</p>
+            <p>Tra cứu thông tin bảo hành</p>
+            <p>Câu hỏi thường gặp khi mua hàng</p>
+        </div>
+        <div>
+            <p>Tin tuyển dụng</p>
+            <p>Tin khuyến mãi</p>
+            <p>Hướng dẫn mua online</p>
+            <p>Hướng dẫn mua trả góp</p>
+            <p>Chính sách trả góp</p>
+            <p>Chính sách thu thập và xử lý dữ liệu cá nhân</p>
+        </div>
+        <div>
+            <p>Hệ thống cửa hàng</p>
+            <p>Chính sách đổi trả</p>
+            <p>Hệ thống bảo hành</p>
+            <p>Giới thiệu máy đổi trả</p>
+            <p>Chính sách mạng di động</p>
+        </div>
+        <div>
+            <p>Tư vấn mua hàng (Miễn phí)</p>
+            <p>0359 626 281</p>
+            <p>Hỗ trợ kỹ thuật</p>
+            <p>0359 626 281</p>
+            <p>Góp ý - Khiếu nại (8h00 - 22h00)</p>
+            <p>0359 626 281</p>
+        </div>
+    </div>
+
+</div>
+<div class="footer-info">
+    <p>Công ty Cổ phần Bán lẻ Kỹ thuật số / Địa chỉ: Quận Hải Châu, Tp. Đà Nẵng</p>
+    <p>Điện thoại: 0359626281. Email: ngovanduong.a2@gmail.com. Chịu trách nhiệm nội dung: Ngô Văn Dương</p>
+</div>
+
+<script src="~/js/profile.js"></script>
